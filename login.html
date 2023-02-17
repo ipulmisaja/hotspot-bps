@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+	<title>Hotspot Login</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+	<link rel="stylesheet" href="styles/style.css" />
+</head>
+<body>
+	$(if chap-id)
+		<form name="sendin" action="$(link-login-only)" method="post">
+			<input type="hidden" name="username" />
+			<input type="hidden" name="password" />
+			<input type="hidden" name="dst" value="$(link-orig)" />
+			<input type="hidden" name="popup" value="true" />
+		</form>
+
+		<script type="text/javascript" src="/md5.js"></script>
+      	<script type="text/javascript">
+		<!--
+			function doLogin()
+			{
+				document.sendin.username.value = document.login.username.value;
+				document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+				document.sendin.submit();
+				return false;
+			}
+		//-->
+		</script>
+	$(endif)
+
+	<section class="ftco-section">
+		<div class="container mb-4">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-2">
+					<img class="w-25" src="img/bps.svg"/>
+					<p class="mt-2"><b class="text-white">
+						HOTSPOT LOGIN<br>BPS PROVINSI SULAWESI BARAT</b>
+					</p>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+				  		<form name="login" action="$(link-login-only)" class="signin-form glass p-4" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+							<input type="hidden" name="dst" value="$(link-orig)" />
+							<input type="hidden" name="popup" value="true" />
+
+							<div class="form-group">
+								<small><b>NIP BPS / Username</b></small>
+								<input name="username" type="text" class="form-control" value="$(username)">
+							</div>
+							<div class="form-group mt-4">
+								<small><b>Password</b></small>
+								<input name="password" type="password" class="form-control">
+							</div>
+							<div class="form-group mt-4">
+								<button type="submit" class="form-control btn btn-primary submit px-3">Log In</button>
+							</div>
+						</form>
+						<br>
+			  			<p class="w-100 text-center">&mdash; Tidak Punya Akun &mdash;</p>
+						<div class="text-center">
+							<form name="login" action="$(link-login-only)" method="post">
+								<input type="hidden" name="username" value="tamu7600" />
+								<input type="hidden" name="password" value="7600t4mU" />
+								<button type="submit" class="py-2 rounded btn btn-warning">Log In - Tamu BPS Sulbar</button>
+							</form>
+						</div>
+			  		</div>
+				</div>
+			</div>
+		</div>
+		<div class="text-center mt-4">
+			$(if error)<small class="text-warning"><b>$(error)</b></small>$(endif)
+		</div>
+	</section>
+
+	<footer class="shadow-sm text-center bg-white w-100" style="position:fixed;bottom:0">
+		<small class="text-dark">Powered by RouterOS - Copyright &copy; 2023</small>
+	</footer>
+
+	<script type="text/javascript">
+		<!--
+		document.login.username.focus();
+		//-->
+	</script>
+</body>
+</html>
