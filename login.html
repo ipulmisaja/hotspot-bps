@@ -60,15 +60,13 @@
 								<button type="submit" class="form-control btn btn-primary submit px-3">Log In</button>
 							</div>
 						</form>
-						<br>
-			  			<p class="w-100 text-center">&mdash; Tidak Punya Akun &mdash;</p>
-						<div class="text-center">
-							<form name="hidden-login" action="$(link-login-only)" method="post">
-								<input type="hidden" name="username" value="tamu7600" />
-								<input type="hidden" name="password" value="7600t4mU" />
-								<button type="submit" class="py-2 rounded btn btn-warning">Log In - Tamu BPS Sulbar</button>
-							</form>
-						</div>
+						$(if trial == 'yes')
+							<br>
+							<div class="text-center">
+								<p class="w-100 text-center">&mdash; Tidak Punya Akun &mdash;</p>
+								<a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)" class="py-2 rounded btn btn-warning">Log In - Tamu BPS Sulbar</a>
+							</div>
+						$(endif)
 			  		</div>
 				</div>
 			</div>
